@@ -68,17 +68,19 @@ function PlayerSearch() {
   const [noPlayerMessage, setNoPlayerMessage] = useState("");
 
   const handlePlayerClick = (value) => {
+    const date = new Date();
+    const yearBeforeCurrent = date.getFullYear() - 1;
     setPlayer([]);
     setPlayerBio([value]);
     fetch(
-      `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${value.id}`
+      `https://www.balldontlie.io/api/v1/season_averages?season=${yearBeforeCurrent}&player_ids[]=${value.id}`
     )
       .then((response) => response.json())
       .then((data) => {
         setPlayerStats(data.data);
       });
     fetch(
-      `https://www.balldontlie.io/api/v1/stats?seasons[]=2019&player_ids[]=${value.id}&per_page=100`
+      `https://www.balldontlie.io/api/v1/stats?seasons[]=${yearBeforeCurrent}&player_ids[]=${value.id}&per_page=100`
     )
       .then((response) => response.json())
       .then((data) => {
