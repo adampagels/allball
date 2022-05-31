@@ -298,7 +298,8 @@ function TopPlayers(props) {
   }
 
   const yearList = [];
-  for (let i = 2020; i > 1984; i--) {
+  const date = new Date();
+  for (let i = date.getFullYear(); i > 1984; i--) {
     yearList.push({ year: i });
   }
 
